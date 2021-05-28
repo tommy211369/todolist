@@ -143,3 +143,21 @@ button:hover {
   color: red;
   background-color: white;
 }
+
+/*-----MEDIA QUERIES------*/
+
+@media (max-width: 410px) {
+  form {
+    width: 100%;
+  }
+
+  input {
+    width: 80%;
+    color: black;
+    border-radius: 7px 0 0 7px;
+  }
+
+  .todo-container {
+    width: 100%;
+  }
+}
