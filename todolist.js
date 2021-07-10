@@ -1,42 +1,42 @@
-import { annee, anneeActuelle, afficheAnnee } from "../../main/app.js";
+let year = document.querySelector("#year");
+let currentYear = new Date();
+let displayCurrentYear = () => {
+  year.textContent = currentYear.getFullYear();
+};
+displayCurrentYear();
 
-afficheAnnee();
-
-// selecteurs
+// selectors
 const input = document.querySelector(".todo-input");
 const button = document.querySelector(".todo-button");
 const list = document.querySelector(".todo-list");
-const erreur = document.querySelector(".erreur");
+const error = document.querySelector(".error");
 
-// ecouteur ajout todo
-button.addEventListener("click", checkTodo);
-
-//fonctions
-function checkTodo(e) {
+// event at click
+button.addEventListener("click", (e) => {
   e.preventDefault();
   if (input.validity.valueMissing) {
-    console.log("Vide");
-    erreur.textContent = "Vous n'avez rien saisie";
-    erreur.style.color = "red";
+    error.textContent = "Vous n'avez rien saisie";
+    error.style.color = "red";
   } else if (input.validity.valueMissing == false) {
-    console.log("Tâche créée");
     addTodo();
     input.validity.valueMissing;
     input.value = "";
   }
-}
+});
 
-function addTodo() {
-  ///////////// crée la Div todo
+const addTodo = () => {
+  ///////////// create todo div
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
-  //////////// crée le Li
+
+  //////////// create li
   const newTodo = document.createElement("li");
   newTodo.textContent = input.value;
 
   newTodo.classList.add("todo-item");
   todoDiv.appendChild(newTodo);
-  /////////// bouton Check
+
+  /////////// Check button
   const completedButton = document.createElement("button");
   completedButton.innerHTML = '<i class="fas fa-check"></i>';
   completedButton.classList.add("complete-btn");
@@ -54,9 +54,9 @@ function addTodo() {
   trashButton.classList.add("trash-btn");
   todoDiv.appendChild(trashButton);
 
-  function removeItem() {
+  const removeItem = () => {
     todoDiv.style.display = "none";
-  }
+  };
 
   trashButton.addEventListener("click", () => {
     todoDiv.style.animation =
@@ -66,7 +66,7 @@ function addTodo() {
 
   //////// ajouter le todo à todo-list
   list.appendChild(todoDiv);
-  erreur.textContent = " ";
+  error.textContent = " ";
 
   /////////// }
-}
+};
